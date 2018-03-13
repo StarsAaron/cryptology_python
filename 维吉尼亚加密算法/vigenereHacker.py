@@ -30,13 +30,14 @@ def main():
         print('Failed to hack encryption.')
 
 
+# 查找message里所有的重复字母序列，并计算这些序列之间的间距（代表密钥字母的个数）
 def findRepeatSequencesSpacings(message):
     # Goes through the message and finds any 3 to 5 letter sequences
     # that are repeated. Returns a dict with the keys of the sequence and
     # values of a list of spacings (num of letters between the repeats).
 
     # Use a regular expression to remove non-letters from the message.
-    message = NONLETTERS_PATTERN.sub('', message.upper())
+    message = NONLETTERS_PATTERN.sub('', message.upper())  # 使用正则移除字符串中的非字母字符
 
     # Compile a list of seqLen-letter sequences found in the message.
     seqSpacings = {}  # keys are sequences, values are list of int spacings

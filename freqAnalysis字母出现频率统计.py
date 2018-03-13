@@ -10,6 +10,7 @@ ETAOIN = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
+# 接受一个字符串参数，返回一个字典，里面包含这个字符串的每个字母出现的频率
 def getLetterCount(message):
     # Returns a dictionary with keys of single letters and values of the
     # count of how many times they appear in the message parameter.
@@ -28,6 +29,7 @@ def getItemAtIndexZero(x):
     return x[0]
 
 
+# 返回这个字符串参数里26个字母按照出现频率从高到底排序之后的字符串
 def getFrequencyOrder(message):
     # Returns a string of the alphabet letters arranged in order of most
     # frequently occurring in the message parameter.
@@ -64,6 +66,7 @@ def getFrequencyOrder(message):
     return ''.join(freqOrder)
 
 
+# 返回这个字符串的字母的频率匹配分支，0到12的整数
 def englishFreqMatchScore(message):
     # Return the number of matches that the string in the message
     # parameter has when its letter frequency is compared to English
@@ -83,3 +86,13 @@ def englishFreqMatchScore(message):
             matchScore += 1
 
     return matchScore
+
+
+def main():
+    text = 'A computer would deserve to be called intelligent if it could deceive a human into believing that it'
+    print("Count:%s" % (getLetterCount(text)))
+    print("FrequencyOrder:%s" % (getFrequencyOrder(text)))
+
+
+if __name__ == '__main__':
+    main()
