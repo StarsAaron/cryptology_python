@@ -1,6 +1,7 @@
 # Simple Substitution Cipher
 # http://inventwithpython.com/hacking (BSD Licensed)
 
+from Toolslib import pyperclip
 import random
 import sys
 
@@ -21,7 +22,7 @@ def main():
     print('Using key %s' % (myKey))
     print('The %sed message is:' % (myMode))
     print(translated)
-    # pyperclip.copy(translated)
+    pyperclip.copy(translated)
     print()
     print('This message has been copied to the clipboard.')
 

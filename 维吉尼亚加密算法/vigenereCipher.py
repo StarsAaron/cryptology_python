@@ -1,7 +1,7 @@
 # Vigenere Cipher (Polyalphabetic Substitution Cipher)
 # http://inventwithpython.com/hacking (BSD Licensed)
 
-import pyperclip
+from Toolslib import pyperclip
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 

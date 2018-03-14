@@ -1,7 +1,7 @@
 # Vigenere Cipher Dictionary Hacker
 # http://inventwithpython.com/hacking (BSD Licensed)
 
-import pyperclip
+from Toolslib import pyperclip
 from 维吉尼亚加密算法 import vigenereCipher
 from 维吉尼亚加密算法 import detectEnglish
 

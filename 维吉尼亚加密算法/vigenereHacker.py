@@ -3,8 +3,7 @@
 
 import itertools
 import re
-import freqAnalysis字母出现频率统计
-import pyperclip
+from Toolslib import freqAnalysis字母出现频率统计, pyperclip
 
 from 维吉尼亚加密算法 import detectEnglish
 from 维吉尼亚加密算法 import vigenereCipher
@@ -58,7 +57,7 @@ def findRepeatSequencesSpacings(message):
                     seqSpacings[seq].append(i - seqStart)
     return seqSpacings
 
-
+# 计算因数
 def getUsefulFactors(num):
     # Returns a list of useful factors of num. By "useful" we mean factors
     # less than MAX_KEY_LENGTH + 1. For example, getUsefulFactors(144)
@@ -75,15 +74,16 @@ def getUsefulFactors(num):
         if num % i == 0:
             factors.append(i)
             factors.append(int(num / i))
-    if 1 in factors:
+    if 1 in factors:  # 1不是有用的因数，去掉
         factors.remove(1)
-    return list(set(factors))
+    return list(set(factors))  # set 去除重复值
 
 
 def getItemAtIndexOne(x):
     return x[1]
 
 
+# 获取出现最多的因数，这个可能就是密钥的长度
 def getMostCommonFactors(seqFactors):
     # First, get a count of how many times a factor occurs in seqFactors.
     factorCounts = {}  # key is a factor, value is how often if occurs

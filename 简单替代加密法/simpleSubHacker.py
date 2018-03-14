@@ -4,7 +4,7 @@
 import copy
 import os
 import pprint
-import pyperclip
+from Toolslib import pyperclip
 import re
 
 from 简单替代加密法 import simpleSubCipher, makeWordPatterns

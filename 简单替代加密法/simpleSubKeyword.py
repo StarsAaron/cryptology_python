@@ -1,7 +1,7 @@
 # Simple Substitution Keyword Cipher
 # http://inventwithpython.com/hacking (BSD Licensed)
 
-import pyperclip
+from Toolslib import pyperclip
 from 简单替代加密法 import simpleSubCipher
 
 

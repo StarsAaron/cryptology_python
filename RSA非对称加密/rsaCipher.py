@@ -34,6 +34,7 @@ def main():
         print(decryptedText)
 
 
+# 获取字符串区块
 def getBlocksFromText(message, blockSize=DEFAULT_BLOCK_SIZE):
     # Converts a string message to a list of block integers. Each integer
     # represents 128 (or whatever blockSize is set to) string characters.
@@ -50,6 +51,7 @@ def getBlocksFromText(message, blockSize=DEFAULT_BLOCK_SIZE):
     return blockInts
 
 
+# 从区块获取字符串
 def getTextFromBlocks(blockInts, messageLength, blockSize=DEFAULT_BLOCK_SIZE):
     # Converts a list of block integers to the original message string.
     # The original message length is needed to properly convert the last
@@ -68,6 +70,8 @@ def getTextFromBlocks(blockInts, messageLength, blockSize=DEFAULT_BLOCK_SIZE):
     return ''.join(message)
 
 
+# 加密信息
+# 加密区块=明文区块^e取模n
 def encryptMessage(message, key, blockSize=DEFAULT_BLOCK_SIZE):
     # Converts the message string into a list of block integers, and then
     # encrypts each block integer. Pass the PUBLIC key to encrypt.
@@ -80,6 +84,8 @@ def encryptMessage(message, key, blockSize=DEFAULT_BLOCK_SIZE):
     return encryptedBlocks
 
 
+# 解密信息
+# 解密区块=密文区块^d取模n
 def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_SIZE):
     # Decrypts a list of encrypted block ints into the original message
     # string. The original message length is required to properly decrypt
@@ -88,10 +94,11 @@ def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_
     n, d = key
     for block in encryptedBlocks:
         # plaintext = ciphertext ^ d mod n
-        decryptedBlocks.append(pow(block, d, n))
+        decryptedBlocks.append(pow(block, d, n))  # pow 函数可以处理幂运算和取模运算 pow(a,b,c)相当于（a**b）%c
     return getTextFromBlocks(decryptedBlocks, messageLength, blockSize)
 
 
+# 从文件中读取Key
 def readKeyFile(keyFilename):
     # Given the filename of a file that contains a public or private key,
     # return the key as a (n,e) or (n,d) tuple value.
@@ -102,6 +109,7 @@ def readKeyFile(keyFilename):
     return (int(keySize), int(n), int(EorD))
 
 
+# 加密明文并写入文件
 def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=DEFAULT_BLOCK_SIZE):
     # Using a key from a key file, encrypt the message and save it to a
     # file. Returns the encrypted message string.
@@ -130,6 +138,7 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=DEFAU
     return encryptedContent
 
 
+# 从文件读取密文并解密
 def readFromFileAndDecrypt(messageFilename, keyFilename):
     # Using a key from a key file, read an encrypted message from a file
     # and then decrypt it. Returns the decrypted message string.

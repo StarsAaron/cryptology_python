@@ -1,6 +1,6 @@
 # Simple Substitution Cipher Editor, http://inventwithpython.com/hacking (BSD Licensed)
 
-import pyperclip
+from Toolslib import pyperclip
 import string
 import textwrap
 

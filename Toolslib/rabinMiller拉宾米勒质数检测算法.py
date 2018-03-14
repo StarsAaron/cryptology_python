@@ -4,6 +4,7 @@
 import random
 
 
+# 拉宾米勒质数检测算法
 def rabinMiller(num):
     # Returns True if num is a prime number.
 
@@ -29,11 +30,16 @@ def rabinMiller(num):
     return True
 
 
+# 改进过的算法
+# （1）排除2以下（包含2）的都是质数
+# （2）检查能否被1000以下的质数整除，整除并不能表示是否是质数，但可以知道是不是合数。
+# （3）进过上面筛选还不能判断，就要使用拉宾米勒质数检测算法，经过上面两个步骤可以提高不少
+# 效率，除以这些小质数比直接执行拉宾米勒质数检测算法要高效
 def isPrime(num):
     # Return True if num is a prime number. This function does a quicker
     # prime number check before calling rabinMiller().
 
-    if (num < 2):
+    if num < 2:
         return False  # 0, 1, and negative numbers are not prime
 
     # About 1/3 of the time we can quickly determine if num is not prime
@@ -54,17 +60,27 @@ def isPrime(num):
         return True
 
     # See if any of the low prime numbers can divide num
-    for prime in lowPrimes:
-        if (num % prime == 0):
+    for prime in lowPrimes:  # 对质数列表进行遍历，将num对每个质数prime取模，如果为0，表示num是合数
+        if num % prime == 0:
             return False
 
     # If all else fails, call rabinMiller() to determine if num is a prime.
     return rabinMiller(num)
 
 
+# 创建一个随机的大质数
 def generateLargePrime(keysize=1024):
     # Return a random prime number of keysize bits in size.
     while True:
         num = random.randrange(2 ** (keysize - 1), 2 ** (keysize))
+        print("num:%s" % num)
+
         if isPrime(num):
+            print("is Prime?:%s" % ('true'))
             return num
+        else:
+            print("is Prime?:%s" % ('false'))
+
+
+if __name__ == '__main__':
+    generateLargePrime(1024)
